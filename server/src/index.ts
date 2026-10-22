@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { pool } from "./db"
 import { authRouter } from "./routes/auth";
+import { requireAuth } from "./middlewares/authMiddleware";
 
 const app = express();
 app.use(cors());
@@ -12,6 +13,8 @@ app.get("/health", async (_req, res) =>{
     const { rows} = await pool.query("SELECT now()");
     res.json({ ok: true, dbTime: rows[0].now});
 });
-
+app.get("/me", requireAuth, (req, res) => {
+  res.json({ userId: req.userId });
+});
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server on :${PORT}`))
