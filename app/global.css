@@ -1,0 +1,4 @@
+/* Tailwind entry stylesheet: NativeWind compiles these directives into styles React Native can use. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
