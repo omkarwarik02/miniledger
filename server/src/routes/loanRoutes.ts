@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { createLoan } from "../controller/loanController";
+import { createLoan, getloans } from "../controller/loanController";
 
 export const loanRouter = Router();
 
 loanRouter.post("/", createLoan);
+loanRouter.get("/", getloans);
 

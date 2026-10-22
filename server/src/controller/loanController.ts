@@ -20,3 +20,16 @@ export async function createLoan(req:Request, res:Response) {
     
     return res.status(201).json(rows[0]);
 }
+
+export async function getloans(req:Request, res:Response){
+    const {rows} = await pool.query(
+        `SELECT *,
+        (repaid_at IS NULL AND due_date < CURRENT_DATE) AS is_overdue
+        FROM loans
+        WHERE user_id = $1
+        ORDER BY due_date ASC`,[req.userId]
+    )
+    return res.status(201).json(rows);
+
+
+}
