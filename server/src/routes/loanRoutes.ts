@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { createLoan, getloans } from "../controller/loanController";
+import { createLoan, getLoans, getSummary, repayLoan } from "../controller/loanController";
 
 export const loanRouter = Router();
 
 loanRouter.post("/", createLoan);
-loanRouter.get("/", getloans);
+loanRouter.get("/", getLoans);
+loanRouter.patch("/:id/repay", repayLoan);
+loanRouter.get("/summary", getSummary);
 

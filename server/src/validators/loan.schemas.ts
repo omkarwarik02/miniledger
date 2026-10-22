@@ -5,3 +5,7 @@ export const createLoanSchema = z.object({
   amount: z.number().positive("Amount must be greater than 0"),
 dueDate: z.iso.date("Date must be a valid YYYY-MM-DD date"),
 });
+
+export const loanIdParamSchema = z.object({
+    id:z.coerce.number().int().positive(),
+})
