@@ -3,12 +3,14 @@ import cors from "cors";
 import { pool } from "./db"
 import { authRouter } from "./routes/auth";
 import { requireAuth } from "./middlewares/authMiddleware";
+import { loanRouter } from "./routes/loanRoutes";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.use("/auth", authRouter);
+app.use("/loans", requireAuth,loanRouter);
 app.get("/health", async (_req, res) =>{
     const { rows} = await pool.query("SELECT now()");
     res.json({ ok: true, dbTime: rows[0].now});

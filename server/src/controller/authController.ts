@@ -6,7 +6,7 @@ import {
   otpSchema,
   requestOtpSchema,
   verifyOtpSchema,
-} from "../validators/auth.schema";
+} from "../validators/auth.schemas";
 import { config } from "../config";
 
 export async function requestOtp(req: Request, res: Response) {
