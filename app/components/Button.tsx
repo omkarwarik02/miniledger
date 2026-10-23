@@ -1,31 +1,29 @@
-// Primary button: full-width pressable styled with NativeWind, with pressed, disabled, and loading states.
 import { Pressable, Text, ActivityIndicator } from "react-native";
-import { colors } from "../constants/theme";
 
-type buttonProps = {
-    title: string;
-    onPress: () => void;
-    disabled?: boolean;
-    loading?: boolean;
+type ButtonProps = {
+  title: string;
+  onPress: () => void;
+  disabled?: boolean;
+  loading?: boolean;
 };
 
-export function Button({ title, onPress, disabled, loading }: buttonProps) {
-    const isDisabled = disabled || loading;
+export function Button({ title, onPress, disabled, loading }: ButtonProps) {
+  const isDisabled = Boolean(disabled || loading);
 
-    return (
-        <Pressable
-            onPress={onPress}
-            disabled={isDisabled}
-            className={`bg-primary h-[52px] w-full rounded-[14px] items-center justify-center p-0.5 active:opacity-80 ${
-                isDisabled ? "opacity-50" : ""
-            }`}
-        >
-            {loading ? (
-                // ActivityIndicator takes a color prop, not a style, so it still reads from the theme.
-                <ActivityIndicator color={colors.bg} />
-            ) : (
-                <Text className="text-base font-semibold">{title}</Text>
-            )}
-        </Pressable>
-    );
+  return (
+    <Pressable
+      onPress={() => {
+        if (!isDisabled) onPress();
+      }}
+      accessibilityState={{ disabled: isDisabled }}
+      className="bg-primary h-[52px] w-full rounded-[14px] items-center justify-center"
+      style={({ pressed }) => ({ opacity: isDisabled ? 0.5 : pressed ? 0.8 : 1 })}
+    >
+      {loading ? (
+        <ActivityIndicator color="#0B0F14" />
+      ) : (
+        <Text className="font-inter-semibold text-[16px] text-[#0B0F14]">{title}</Text>
+      )}
+    </Pressable>
+  );
 }

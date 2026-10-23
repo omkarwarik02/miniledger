@@ -8,11 +8,30 @@ import { colors } from "../../../constants/theme";
 import { Button } from "../../../components/Button";
 
 export default function WelcomeScreen() {
+  // Full class names (not built from strings) so Tailwind picks them up.
   const features = [
-    "Record money you lend",
-  "See overdue loans at a glance",
-  "Mark loans as repaid",
-  ]
+    {
+      icon: "wallet-outline",
+      title: "Record money you lend",
+      subtitle: "Who, how much, and when it's due",
+      color: colors.primary,
+      tile: "bg-primary/15",
+    },
+    {
+      icon: "alarm-outline",
+      title: "See overdue loans at a glance",
+      subtitle: "Late payments are flagged in red",
+      color: colors.danger,
+      tile: "bg-danger/15",
+    },
+    {
+      icon: "checkmark-done-outline",
+      title: "Mark loans as repaid",
+      subtitle: "One tap when you get paid back",
+      color: colors.success,
+      tile: "bg-success/15",
+    },
+  ] as const;
   return (
     <Screen className="gap-2 justify-between">
       <View className="gap-3">
@@ -25,13 +44,21 @@ export default function WelcomeScreen() {
       </View>
       </View>
       
-      <View>
-         {features.map((item)=>(
-        <View key={item} className="flex-row items-center gap-3">
-            <Ionicons name="checkmark-circle" size={20} color={colors.success}></Ionicons>
-            <Text className="font-inter-medium text-fg text-[#16px]">{item}</Text>
-        </View>
-      ))}
+      <View className="gap-3">
+        {features.map((item) => (
+          <View
+            key={item.title}
+            className="flex-row items-center gap-4 rounded-2xl bg-surface border border-line p-4"
+          >
+            <View className={`w-11 h-11 rounded-xl items-center justify-center ${item.tile}`}>
+              <Ionicons name={item.icon} size={22} color={item.color} />
+            </View>
+            <View className="flex-1 gap-0.5">
+              <Text className="font-inter-semibold text-[15px] text-fg">{item.title}</Text>
+              <Text className="font-inter text-[13px] text-muted">{item.subtitle}</Text>
+            </View>
+          </View>
+        ))}
       </View>
 
       <View>

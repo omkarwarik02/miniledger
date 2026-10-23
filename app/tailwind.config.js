@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         base: "#0B0F14",
         surface: "#151B23",
+        surface2: "#1E2630",
         line: "#2A3441",
         fg: "#E6EDF3",
         muted: "#8B98A5",
