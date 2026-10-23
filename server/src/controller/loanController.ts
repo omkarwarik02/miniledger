@@ -29,7 +29,7 @@ export async function getLoans(req:Request, res:Response){
         WHERE user_id = $1
         ORDER BY due_date ASC`,[req.userId]
     )
-    return res.status(201).json(rows);
+    return res.json(rows);
 
 
 }
@@ -52,7 +52,24 @@ export async function repayLoan(req:Request, res:Response){
     }
     res.json(result.rows[0])
 
-    
+
+}
+export async function deleteLoan(req:Request, res:Response){
+    const parsed = loanIdParamSchema.safeParse(req.params);
+    if(!parsed.success){
+        return res.status(400).json({ error: "Invalid loan id"})
+    }
+    const {id} = parsed.data;
+    const result = await pool.query(
+        `DELETE FROM loans
+        WHERE id = $1 AND user_id = $2
+        RETURNING *
+      `,[id, req.userId]
+    )
+    if(result.rowCount === 0){
+        return res.status(404).json({ error:"Loan not found"});
+    }
+    res.json(result.rows[0])
 }
 export async function getSummary(req:Request, res:Response){
     const {rows} = await pool.query(
@@ -64,5 +81,5 @@ export async function getSummary(req:Request, res:Response){
         WHERE user_id =$1
         `,[req.userId]
     )
-    return res.status(201).json(rows[0])
+    return res.json(rows[0])
 }
