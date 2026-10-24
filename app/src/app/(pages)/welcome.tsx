@@ -33,7 +33,7 @@ export default function WelcomeScreen() {
     },
   ] as const;
   return (
-    <Screen className="gap-2 justify-between">
+    <Screen scroll className="gap-2 justify-between">
       <View className="gap-3">
         <Logo />
         <Text className="text-[#908FA0] font-inter">MINILEDGER</Text>

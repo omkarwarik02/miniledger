@@ -113,7 +113,7 @@ export default function DashboardScreen() {
             </Text>
           </Pressable>
         </View>
-        <View className="w-full bg-surface2 mt-10 gap-3 p-5 rounded-xl">
+        <View className="w-full bg-surface2 mt-6 gap-3 p-5 rounded-xl">
           <Text className="text-[10px] text-fg font-inter-semibold ">
             TOTAL LENT
           </Text>
@@ -143,7 +143,7 @@ export default function DashboardScreen() {
           </Text>
         ) : null}
 
-        <View className="mt-10 flex-1">
+        <View className="mt-6 flex-1">
           <View className="flex-row justify-between">
             <Text className="font-inter-semibold text-fg text-[16px]">
               Who owes you
@@ -154,7 +154,7 @@ export default function DashboardScreen() {
               </Text>
             </View>
           </View>
-          <View className="mt-10 flex-1">
+          <View className="mt-4 flex-1">
             <FlatList
               data={loans}
               keyExtractor={(item) => String(item.id)}

@@ -54,7 +54,10 @@ export function LoaItem({ loan, onRepay, onDelete }: LoanItemProps) {
 
         <View className="flex-1 gap-1">
           <View className="flex-row items-center gap-2">
-            <Text className="font-inter-semibold text-[16px] text-fg">
+            <Text
+              numberOfLines={1}
+              className="shrink font-inter-semibold text-[16px] text-fg"
+            >
               {loan.friend_name}
             </Text>
             <Text

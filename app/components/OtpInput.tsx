@@ -28,13 +28,13 @@ export function OtpInput({ value, onChange }: OtpInputProps) {
   }, []);
 
   return (
-    // ② Uses focusInput; ③ no gap-4 (justify-between already spaces the boxes)
-    <Pressable onPress={focusInput} className="flex-row justify-between">
+    // ② Uses focusInput; ③ gap-2 keeps boxes apart when they shrink on narrow screens
+    <Pressable onPress={focusInput} className="flex-row justify-between gap-2">
       {Array.from({ length: 6 }).map((_, i) => (
         <View
           key={i}
-          // ④ w-12 so 6 boxes fit; ⑤ stray "}" removed
-          className={`w-12 h-14 rounded-xl bg-surface2 border items-center justify-center ${
+          // ④ flex-1 + max-w-12 so 6 boxes shrink to fit 320dp screens; ⑤ stray "}" removed
+          className={`flex-1 max-w-12 h-14 rounded-xl bg-surface2 border items-center justify-center ${
             i === value.length ? "border-primary" : "border-line"
           }`}
         >

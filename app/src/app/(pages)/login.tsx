@@ -85,7 +85,7 @@ async function handleVerify(){
             placeholder="98765 43210"
           />
           <Text className="text-[12px] text-[#C7C4D7]">
-            We&apos;ll send a 6digit code
+            We&apos;ll send a 6 digit code
           </Text>
         </View>
         <View className="mt-5">
