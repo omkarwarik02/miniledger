@@ -146,7 +146,7 @@ export default function DashboardScreen() {
         <View className="mt-10 flex-1">
           <View className="flex-row justify-between">
             <Text className="font-inter-semibold text-fg text-[16px]">
-              Loans
+              Who owes you
             </Text>
             <View className="bg-slate-500 rounded-xl px-2 py-0.5">
               <Text className=" text-fg font-inter-semibold">

@@ -18,7 +18,7 @@ export default function LoginScreen() {
   const [step, setStep] = useState<"phone" | "otp">("phone");
   const [loading, setLoading] = useState(false);
 const [error, setError] = useState("");
-  console.log("step:", step, "phone:", phone);
+
 
 
 
@@ -62,18 +62,6 @@ async function handleVerify(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   return (
     <Screen keyboard className="justify-evenly">
       <View className="items-center gap-2">
@@ -97,7 +85,7 @@ async function handleVerify(){
             placeholder="98765 43210"
           />
           <Text className="text-[12px] text-[#C7C4D7]">
-            Well send a 6digit code
+            We&apos;ll send a 6digit code
           </Text>
         </View>
         <View className="mt-5">
